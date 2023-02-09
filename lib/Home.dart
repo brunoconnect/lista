@@ -36,6 +36,39 @@ class _HomeState extends State<Home> {
             Map<String, dynamic> item = _itens[indice];
             print("item ${item["titulo"]}");
             return ListTile(
+              onTap: () {
+                // print("Click com onTap $indice");
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text(_itens[indice]["titulo"]),
+                        titlePadding: EdgeInsets.all(20),
+                        titleTextStyle:
+                            TextStyle(fontSize: 20, color: Colors.lightGreen),
+                        content: Text(_itens[indice]["descricao"]),
+                        // backgroundColor: Colors.orangeAccent,
+                        // contentPadding: EdgeInsets.all(25),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                print("Selecionado Sim");
+                                Navigator.pop(context);
+                              },
+                              child: Text("Sim")),
+                          TextButton(
+                              onPressed: () {
+                                print("Selecionado Não");
+                                Navigator.pop(context);
+                              },
+                              child: Text("Não"))
+                        ],
+                      );
+                    });
+              },
+              // onLongPress: () {
+              //   print("Click com onLongPress");
+              // },
               title: Text(_itens[indice]["titulo"]),
               subtitle: Text(_itens[indice]["descricao"]),
             );
